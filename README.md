@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-
 # Vacation
-
-=======
-
-# vacation
 
 ## Project setup
 
@@ -45,5 +39,3 @@ npm run lint
 ### Customize configuration
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
-
-> > > > > > > b7df136 (init)
