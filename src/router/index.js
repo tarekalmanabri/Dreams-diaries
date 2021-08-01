@@ -1,6 +1,10 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import Camping from "../views/Camping.vue";
+import Beach from "../views/Beach.vue";
+import Mountain from "../views/Mountain.vue";
+import Cities from "../views/Cities.vue";
 
 Vue.use(VueRouter);
 
@@ -18,6 +22,26 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
+  },
+  {
+    path: "/camping",
+    name: "Caming",
+    component: Camping,
+  },
+  {
+    path: "/cities",
+    name: "Cities",
+    component: Cities,
+  },
+  {
+    path: "/mountain",
+    name: "Mountain",
+    component: Mountain,
+  },
+  {
+    path: "/beach",
+    name: "Beach",
+    component: Beach,
   },
 ];
 
