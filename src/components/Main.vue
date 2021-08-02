@@ -15,7 +15,7 @@ export default {
 </script>
 <style scoped>
 .main-section {
-  background-image: url("../assets/main.png");
+  background-image: url("/img/backgrounds/main.png");
   background-size: cover;
 }
 </style>

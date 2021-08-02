@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <Main />
-    <div class="mid-section p-20">
+    <div class="p-20 rounded m-auto mt-7 border border-gray-400 w-11/12">
       <h2 class="text-2xl pb-5">Categories</h2>
       <p>
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Exercitationem
@@ -13,51 +13,29 @@
     <div class="m-5 grid">
       <ul class="card-wrapper">
         <router-link to="/beach">
-          <li class="card">
-            <img src="../assets/beach.png" alt="" class="h-96 w-full pb-5" />
-            <div class="pr-2 pl-2">
-              <h3>Beach & Sand</h3>
-              <p>
-                Check the most beautiful and cheapest beaches and enjoy the sand
-                and sun!
-              </p>
-            </div>
-          </li>
+          <Category imgUrl="/img/backgrounds/beach.png" header="Beach & Sand">
+            Check the most beautiful and cheapest beaches and enjoy the sand and
+            sun!
+          </Category>
         </router-link>
 
         <router-link to="/cities">
-          <li class="card">
-            <img src="../assets/cities.png" alt="" class="h-96 w-full pb-5" />
-            <div class="pr-2 pl-2">
-              <h3>City Life</h3>
-              <p>
-                Explore and live the day and night, enjoy all meuseums, malls
-                and parks!
-              </p>
-            </div>
-          </li>
+          <Category imgUrl="/img/backgrounds/cities.png" header="City Life">
+            Explore and live the day and night, enjoy all meuseums, malls and
+            parks!
+          </Category>
         </router-link>
         <router-link to="/camping">
-          <li class="card">
-            <img src="../assets/camping.png" alt="" class="h-96 w-full pb-5" />
-            <div class="pr-2 pl-2">
-              <h3>Camping</h3>
-              <p>Find the best spots for a chill camping areas around you!</p>
-            </div>
-          </li>
+          <Category imgUrl="/img/backgrounds/camping.png" header="Camping">
+            Find the best spots for a chill camping areas around you!
+          </Category>
         </router-link>
 
         <router-link to="/mountain">
-          <li class="card">
-            <img src="../assets/mountain.png" alt="" class="h-96 w-full pb-5" />
-            <div class="pr-2 pl-2">
-              <h3>Mountains</h3>
-              <p>
-                Check the best trips to the nicest mounatins and go live the
-                adventure!
-              </p>
-            </div>
-          </li>
+          <Category imgUrl="/img/backgrounds/mountain.png" header="Mountains">
+            Check the best trips to the nicest mounatins and go live the
+            adventure!
+          </Category>
         </router-link>
       </ul>
     </div>
@@ -67,11 +45,13 @@
 <script>
 // @ is an alias to /src
 import Main from "@/components/Main.vue";
+import Category from "@/components/Category.vue";
 
 export default {
   name: "Home",
   components: {
     Main,
+    Category,
   },
 };
 </script>
@@ -107,11 +87,5 @@ export default {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(30ch, 1fr));
   grid-gap: 1.5rem;
-}
-.mid-section {
-  width: 90%;
-  margin: 30px auto auto;
-  border-radius: 20px;
-  border: 1px solid gray;
 }
 </style>
