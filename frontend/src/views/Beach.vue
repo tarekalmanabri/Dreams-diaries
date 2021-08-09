@@ -1,21 +1,35 @@
 <template>
   <div class="beach">
     <h1>this is beach page</h1>
-    <CategoryPage />
+    <Company
+      v-for="company in companies"
+      :key="company.name"
+      :company="company"
+    />
   </div>
 </template>
 
 <script>
-import CategoryPage from "../components/CategoryPage.vue";
+import Company from "../components/Company.vue";
 
 export default {
-  components: { CategoryPage },
-  created() {
-    console.log(this.getUsers());
+  components: { Company },
+  mounted() {
+    this.getUsers();
   },
+
+  data() {
+    return {
+      companies: null,
+    };
+  },
+
   methods: {
-    getUsers() {
-      fetch(this.$apiUrl + "/users");
+    async getUsers() {
+      const response = await fetch(this.$apiUrl + "/companies");
+      const companies = await response.json();
+
+      this.companies = companies.results;
     },
   },
 };
