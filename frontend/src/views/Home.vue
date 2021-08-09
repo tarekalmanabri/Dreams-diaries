@@ -14,8 +14,10 @@
       <ul class="card-wrapper">
         <router-link to="/beach">
           <Category imgUrl="/img/backgrounds/beach.png" header="Beach & Sand">
-            Check the most beautiful and cheapest beaches and enjoy the sand and
-            sun!
+            <p>
+              Check the most beautiful and cheapest beaches and enjoy the sand
+              and sun!
+            </p>
           </Category>
         </router-link>
 
@@ -58,6 +60,8 @@ export default {
 
 <style scoped>
 .card {
+  height: 100%;
+  width: 100%;
   --card-gradient: rgba(0, 0, 0, 0.8);
   --card-gradient: #5e9ad9, #e271ad;
   --card-blend-mode: overlay;
