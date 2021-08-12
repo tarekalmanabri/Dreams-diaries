@@ -1,6 +1,5 @@
 <template>
   <div class="beach">
-    <h1>this is beach page</h1>
     <Company
       v-for="company in companies"
       :key="company.name"

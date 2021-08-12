@@ -3,6 +3,9 @@ module.exports = {
   darkMode: false,
   theme: {
     extend: {},
+    screens: {
+      mb: "320px",
+    },
   },
   variants: {
     extend: {

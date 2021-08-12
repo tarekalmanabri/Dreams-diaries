@@ -1,17 +1,19 @@
 <template>
-  <div>
-    <a :href="company.refs.jobs_page">
-      <div class="border-2 rounded m-2 p-2 flex justify-between">
-        <img :src="company.refs.logo_image" alt="" class="w-24" />
-        <h1 class="ml-5 mr-auto text-2xl self-left">{{ company.name }}</h1>
-        <p class="m-1 self-center">{{ company.description }}</p>
-        <div class="flex flex-col justify-end">
-          <p class="m-1">
-            <strong>{{ company.industries[0].name }}</strong>
-          </p>
-        </div>
+  <div class="">
+    <div class="border-2 rounded my-2 mx-auto p-2 max-w-7xl">
+      <div class="flex flex-row mb-4">
+        <a :href="company.refs.jobs_page">
+          <img :src="company.refs.logo_image" alt="" class="w-24" />
+        </a>
+        <h1 class="text-2xl ml-5">{{ company.name }}</h1>
+        <p class="ml-auto justify-self-end text-xl">
+          {{ company.industries[0].name }}
+        </p>
       </div>
-    </a>
+      <div class="flex flex-row">
+        <p class="m-1 self-center">{{ company.description }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
