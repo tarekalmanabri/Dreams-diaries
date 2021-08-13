@@ -10,7 +10,7 @@
           |
           <router-link class="nav-link" to="/about">About</router-link>
           |
-          <router-link class="bg-button" to="/contect">Conect</router-link>
+          <router-link class="bg-button" to="/contect">Connect</router-link>
         </div>
         <div class="ml-auto space-x-4 text-red-400">
           <router-link class="bg-button" to="/login">Sign in</router-link>
