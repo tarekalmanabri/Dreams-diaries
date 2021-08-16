@@ -5,9 +5,8 @@ const createRoutes = (app) => {
     res.send({ status: true });
   });
   app.get("/companies", UsersController.getCompany);
-
-  app.get("/users", UsersController.getUsers);
-  app.post("/users", UsersController.postUsers);
+  app.get("/login", UsersController.getUsers);
+  app.post("/signup", UsersController.postUsers);
 };
 
 module.exports = { createRoutes };

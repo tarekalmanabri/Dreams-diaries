@@ -1,21 +1,10 @@
 const fetch = require("node-fetch");
-
-const users = [
-  {
-    id: 1,
-    name: "Tarek",
-  },
-  {
-    id: 2,
-    name: "Edie",
-  },
-];
+const userModel = require("../models");
 
 const api_key = process.env.API_KEY;
 
 const UsersController = {
   async getCompany(req, res) {
-    console.log(api_key);
     const companies = await fetch(
       `https://www.themuse.com/api/public/companies?page=1&api_key=${api_key}`
     );
@@ -24,14 +13,25 @@ const UsersController = {
     res.json(json);
   },
 
-  getUsers(req, res) {
-    res.json(users);
+  async getUsers(request, response) {
+    const users = await userModel.find({});
+
+    try {
+      response.send(users);
+    } catch (error) {
+      response.status(500).send(error);
+    }
   },
 
-  postUsers(req, res) {
-    const user = req.body;
-    users.push(req.body);
-    res.json(users);
+  async postUsers(request, response) {
+    const user = new userModel(request.body);
+
+    try {
+      await user.save();
+      response.send(user);
+    } catch (error) {
+      response.status(500).send(error);
+    }
   },
 };
 

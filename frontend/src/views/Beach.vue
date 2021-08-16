@@ -14,7 +14,7 @@ import Company from "../components/Company.vue";
 export default {
   components: { Company },
   mounted() {
-    this.getUsers();
+    this.getCompanies();
   },
 
   data() {
@@ -24,7 +24,7 @@ export default {
   },
 
   methods: {
-    async getUsers() {
+    async getCompanies() {
       const response = await fetch(this.$apiUrl + "/companies");
       const companies = await response.json();
 
