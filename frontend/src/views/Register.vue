@@ -8,9 +8,10 @@
           </h1>
           <h3 class="p-1 text-gray-700">Free forever. No payment needed.</h3>
         </div>
-        <form action="#" class="p-0">
+        <form @submit.prevent="handleSubmit" class="p-0">
           <div class="mt-5">
             <input
+              v-model="email"
               type="text"
               class="w-full p-2 border rounded border-gray-300 focus:ring-1"
               placeholder="Email"
@@ -18,6 +19,7 @@
           </div>
           <div class="mt-5">
             <input
+              v-model="username"
               type="text"
               class="w-full p-2 border rounded border-gray-300 focus:ring-1"
               placeholder="User-name"
@@ -25,6 +27,7 @@
           </div>
           <div class="mt-5">
             <input
+              v-model="password"
               type="password"
               class="w-full p-2 border rounded border-gray-300 focus:ring-1"
               placeholder="Password"
@@ -61,3 +64,26 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      email: null,
+      username: null,
+      password: null,
+    };
+  },
+  methods: {
+    async handleSubmit() {
+      const res = await this.$axios.post("register", {
+        email: this.email,
+        username: this.username,
+        password: this.password,
+      });
+      console.log(res);
+      this.$router.push("/login");
+    },
+  },
+};
+</script>

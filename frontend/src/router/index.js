@@ -5,7 +5,7 @@ import Camping from "../views/Camping.vue";
 import Beach from "../views/Beach.vue";
 import Mountain from "../views/Mountain.vue";
 import Cities from "../views/Cities.vue";
-import Signup from "../views/Signup.vue";
+import Register from "../views/Register.vue";
 import Login from "../views/Login.vue";
 
 Vue.use(VueRouter);
@@ -26,9 +26,9 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
   },
   {
-    path: "/signup",
-    name: "Signup",
-    component: Signup,
+    path: "/register",
+    name: "Register",
+    component: Register,
   },
   {
     path: "/login",
