@@ -10,7 +10,7 @@
         veniam cum.
       </p>
     </div>
-    <div class="m-5 grid">
+    <div class="m-5 content-center">
       <ul class="card-wrapper">
         <router-link to="/beach">
           <Category imgUrl="/img/backgrounds/beach.png" header="Beach & Sand">
@@ -45,7 +45,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import Main from "@/components/Main.vue";
 import Category from "@/components/Category.vue";
 
@@ -71,7 +70,6 @@ export default {
   overflow: hidden;
 }
 
-/* Additional demo display styles */
 * {
   box-sizing: border-box;
 }
@@ -86,7 +84,8 @@ export default {
 }
 
 .card-wrapper {
-  margin: 20px;
+  max-width: 70%;
+  margin: auto;
   list-style: none;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(30ch, 1fr));

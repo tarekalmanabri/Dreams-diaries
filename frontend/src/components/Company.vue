@@ -1,9 +1,9 @@
 <template>
   <div class="">
-    <div class="border-2 rounded my-2 mx-auto p-2 max-w-7xl">
+    <div class="border-b-2 rounded my-2 mx-auto p-2 max-w-5xl">
       <div class="flex flex-row mb-4">
         <a :href="company.refs.jobs_page">
-          <img :src="company.refs.logo_image" alt="" class="w-24" />
+          <img :src="company.refs.logo_image" alt="" class="w-20" />
         </a>
         <h1 class="text-2xl ml-5">{{ company.name }}</h1>
         <p class="ml-auto justify-self-end text-xl">

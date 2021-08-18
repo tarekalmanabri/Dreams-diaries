@@ -36,7 +36,7 @@
 
         <span class="block p-5 text-center text-gray-800 text-xs"
           >Don't have an account?
-          <a class="" href="/signup" data-test="Link">
+          <a class="" href="/register" data-test="Link">
             <span class="underline">Signup here</span></a
           ></span
         >

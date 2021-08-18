@@ -10,9 +10,13 @@ const AuthController = {
       if (!(email && password)) {
         res.status(400).send("All input is required");
       }
-      const user = await User.find({ email });
+      const user = await User.findOne({ email: email.toLowerCase() });
 
-      if (user && (await bcrypt.compare(password, user.password))) {
+      if (
+        user &&
+        user.password &&
+        (await bcrypt.compare(password, user.password))
+      ) {
         const token = jwt.sign({ user_id: user._id, email }, "secret", {
           expiresIn: "2h",
         });
@@ -41,7 +45,7 @@ const AuthController = {
         return res.status(409).send("User already exists. Please login");
       }
 
-      encryptedPassword = await bcrypt.hash(password, 10);
+      const encryptedPassword = await bcrypt.hash(password, 10);
 
       const user = await User.create({
         username,
