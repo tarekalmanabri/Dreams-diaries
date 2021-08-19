@@ -10,7 +10,7 @@
         <form @submit.prevent="handleSubmit" class="p-0">
           <div class="mt-5">
             <input
-              v-model="email"
+              v-model="form.email"
               type="text"
               class="w-full p-2 border rounded border-gray-300 focus:ring-1"
               placeholder="Email"
@@ -18,7 +18,7 @@
           </div>
           <div class="mt-5">
             <input
-              v-model="password"
+              v-model="form.password"
               type="password"
               class="w-full p-2 border rounded border-gray-300 focus:ring-1"
               placeholder="Password"
@@ -46,20 +46,23 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   data() {
     return {
-      email: null,
-      password: null,
+      form: {
+        email: null,
+        password: null,
+      },
     };
   },
+
   methods: {
-    async handleSubmit() {
-      const res = await this.$axios.post("login", {
-        email: this.email,
-        password: this.password,
-      });
-      console.log(res);
+    ...mapActions("auth", ["signIn"]),
+
+    handleSubmit() {
+      this.signIn(this.form);
       this.$router.push("/");
     },
   },
