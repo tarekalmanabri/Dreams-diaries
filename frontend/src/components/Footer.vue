@@ -9,8 +9,6 @@
 
 <script>
 export default {
-  name: "HelloWorld",
+  name: "Footer",
 };
 </script>
-
-<style scoped></style>
