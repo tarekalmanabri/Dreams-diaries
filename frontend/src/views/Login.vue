@@ -59,7 +59,9 @@ export default {
   },
 
   methods: {
-    ...mapActions("auth", ["signIn"]),
+    ...mapActions({
+      signIn: "signIn",
+    }),
 
     handleSubmit() {
       this.signIn(this.form);

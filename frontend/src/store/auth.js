@@ -5,6 +5,11 @@ export const auth = {
   state: () => ({
     token: null,
   }),
+  getters: {
+    authenticated(state) {
+      return state.token;
+    },
+  },
   mutations: {
     SET_TOKEN(state, token) {
       console.log(state, token);
