@@ -1,16 +1,20 @@
 <template>
   <div class="home">
-    <Main />
-    <div class="p-20 rounded m-auto mt-7 border border-gray-400 w-11/12">
-      <h2 class="text-2xl pb-5">Categories</h2>
-      <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Exercitationem
-        distinctio deleniti amet. Quod cumque nulla repudiandae quibusdam,
-        molestias est odio, unde iure provident veritatis porro ea nam iusto
-        veniam cum.
-      </p>
+    <div class="flex p-20 rounded m-auto mt-7 border border-gray-400 w-11/12">
+      <div class="ml-auto">
+        <h2 class="text-2xl pb-5">Welcom to Dream Journal</h2>
+        <p>
+          Do you want to live in your own dream?<br />
+          Lucid dreaming is one of the most intersting thing about dreaming,
+          Imagine you can control what you do in your DREAM. <br />Writing your
+          dream as soon as you wake up will help your brain to get close to
+          lucid dreaming. <br />
+          <a class="register" href="/register">Create and account</a> tostart
+          you dream journal and get closer to live in your dreams
+        </p>
+      </div>
     </div>
-    <div class="m-5 content-center">
+    <!-- <div class="m-5 content-center">
       <ul class="card-wrapper">
         <router-link to="/beach">
           <Category imgUrl="/img/backgrounds/beach.png" header="Beach & Sand">
@@ -40,20 +44,19 @@
           </Category>
         </router-link>
       </ul>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
-import Main from "@/components/Main.vue";
-import Category from "@/components/Category.vue";
+// import Category from "@/components/Category.vue";
 
 export default {
   name: "Home",
-  components: {
-    Main,
-    Category,
-  },
+
+  // components: {
+  //   Category,
+  // },
 };
 </script>
 
@@ -90,5 +93,8 @@ export default {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(30ch, 1fr));
   grid-gap: 1.5rem;
+}
+.register {
+  color: #f87171;
 }
 </style>
