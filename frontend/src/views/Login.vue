@@ -65,7 +65,7 @@ export default {
 
     handleSubmit() {
       this.signIn(this.form);
-      this.$router.push("/");
+      this.$router.push("/dashboard");
     },
   },
 };

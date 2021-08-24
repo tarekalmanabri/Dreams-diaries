@@ -10,6 +10,9 @@
         <router-link class="nav-link" to="/about">About</router-link>
         |
         <router-link class="bg-button" to="/contect">Connect</router-link>
+        <router-link class="nav-link" v-if="authenticated" to="/dashboard"
+          >| Dashboard</router-link
+        >
       </div>
       <div class="ml-auto space-x-4 text-red-400">
         <router-link class="bg-button" v-if="!authenticated" to="/login"

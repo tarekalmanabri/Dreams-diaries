@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Camping from "../views/Camping.vue";
 import Beach from "../views/Beach.vue";
+import Dashboard from "../views/Dashboard.vue";
 import Mountain from "../views/Mountain.vue";
 import Cities from "../views/Cities.vue";
 import Register from "../views/Register.vue";
@@ -34,6 +35,11 @@ const routes = [
     path: "/login",
     name: "Login",
     component: Login,
+  },
+  {
+    path: "/dashboard",
+    name: "Dashboard",
+    component: Dashboard,
   },
   {
     path: "/camping",
