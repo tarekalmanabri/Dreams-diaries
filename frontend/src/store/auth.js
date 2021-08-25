@@ -20,6 +20,18 @@ export const auth = {
     async signIn({ commit }, credentials) {
       const res = await axios.post("login", credentials);
       commit("SET_TOKEN", res.data.token);
+
+      axios.defaults.headers = {
+        Authorization: res.data.token,
+      };
+    },
+
+    signOut({ commit }) {
+      commit("SET_TOKEN", null);
+
+      axios.defaults.headers = {
+        Authorization: null,
+      };
     },
   },
 };

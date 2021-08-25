@@ -18,7 +18,7 @@
         <router-link class="bg-button" v-if="!authenticated" to="/login"
           >Sign in</router-link
         >
-        <router-link class="bg-button" v-else to="/">Sign out</router-link>
+        <a class="bg-button" v-else @click="signOut">Sign out</a>
         <i class="fab fa-twitter hover:text-gray-700"></i>
         <i class="fab fa-facebook-f hover:text-gray-700"></i>
       </div>
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "Navbar",
@@ -35,6 +35,15 @@ export default {
     ...mapGetters({
       authenticated: "authenticated",
     }),
+  },
+
+  methods: {
+    ...mapActions({ storeSignOut: "signOut" }),
+
+    signOut() {
+      this.storeSignOut();
+      this.$router.push("/");
+    },
   },
 };
 </script>

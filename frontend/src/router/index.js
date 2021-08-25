@@ -1,13 +1,5 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-import Camping from "../views/Camping.vue";
-import Beach from "../views/Beach.vue";
-import Dashboard from "../views/Dashboard.vue";
-import Mountain from "../views/Mountain.vue";
-import Cities from "../views/Cities.vue";
-import Register from "../views/Register.vue";
-import Login from "../views/Login.vue";
 
 Vue.use(VueRouter);
 
@@ -15,7 +7,7 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    component: () => import("../views/Home.vue"),
   },
   {
     path: "/about",
@@ -23,43 +15,27 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+    component: () => import("../views/About.vue"),
   },
   {
     path: "/register",
     name: "Register",
-    component: Register,
+    component: () => import("../views/Register.vue"),
   },
   {
     path: "/login",
     name: "Login",
-    component: Login,
+    component: () => import("../views/Login.vue"),
   },
   {
     path: "/dashboard",
     name: "Dashboard",
-    component: Dashboard,
+    component: () => import("../views/Dashboard.vue"),
   },
   {
-    path: "/camping",
-    name: "Caming",
-    component: Camping,
-  },
-  {
-    path: "/cities",
-    name: "Cities",
-    component: Cities,
-  },
-  {
-    path: "/mountain",
-    name: "Mountain",
-    component: Mountain,
-  },
-  {
-    path: "/beach",
-    name: "Beach",
-    component: Beach,
+    path: "/dreams/create",
+    name: "CreateDream",
+    component: () => import("../views/Dreams/CreateDream.vue"),
   },
 ];
 
