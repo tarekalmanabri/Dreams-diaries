@@ -1,6 +1,6 @@
 const { AuthController } = require("./controllers/AuthController");
 const express = require("express");
-const { PostsController } = require("./controllers/PostsController");
+const { DreamsController } = require("./controllers/DreamsController");
 const { AuthMiddleware } = require("./middleware/auth");
 
 const createRoutes = (app) => {
@@ -11,13 +11,13 @@ const createRoutes = (app) => {
   app.post("/login", AuthController.logIn);
   app.post("/register", AuthController.register);
 
-  const postsRouter = express.Router();
+  const dreamsRouter = express.Router();
+  const dreamController = new DreamsController();
+  dreamsRouter.use(AuthMiddleware);
+  dreamsRouter.get("/", (req, res) => dreamController.getDreams(req, res));
+  dreamsRouter.post("/", (req, res) => dreamController.createDream(req, res));
 
-  postsRouter.use(AuthMiddleware);
-  postsRouter.get("/", PostsController.getPosts);
-  postsRouter.post("/", PostsController.createPost);
-
-  app.use("/posts", postsRouter);
+  app.use("/dreams", dreamsRouter);
 };
 
 module.exports = { createRoutes };
