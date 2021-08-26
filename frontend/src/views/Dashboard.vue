@@ -20,12 +20,16 @@
           + New Dream
         </router-link>
       </div>
+      <CreateDream />
     </header>
   </div>
 </template>
 
 <script>
+import CreateDream from "./Dreams/CreateDream.vue";
+
 export default {
+  components: { CreateDream },
   data() {
     return {
       posts: [],

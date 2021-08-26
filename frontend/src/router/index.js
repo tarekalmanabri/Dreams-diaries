@@ -37,6 +37,16 @@ const routes = [
     name: "CreateDream",
     component: () => import("../views/Dreams/CreateDream.vue"),
   },
+  {
+    path: "/dreams/overview",
+    name: "DreamsOverview",
+    component: () => import("../views/Dreams/DreamsOverview.vue"),
+  },
+  {
+    path: "/dreams/:id",
+    name: "Dream",
+    component: () => import("../views/Dreams/Dream.vue"),
+  },
 ];
 
 const router = new VueRouter({

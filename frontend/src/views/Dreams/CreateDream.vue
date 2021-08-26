@@ -25,7 +25,6 @@
 <script>
 export default {
   name: "CreateDream",
-
   data() {
     return {
       postContent: null,
@@ -35,20 +34,9 @@ export default {
   methods: {
     addPost() {
       if (this.postContent) {
-        this.$axios
-          .post("posts", {
-            data: {
-              posts: [
-                {
-                  content: this.postContent,
-                },
-              ],
-            },
-          })
-          .then((res) => {
-            console.log(res);
-            this.postContent = null;
-          });
+        this.$store.dispatch("dreams/saveDream", this.postContent);
+
+        this.$router.push("/dreams/overview");
       }
     },
   },
