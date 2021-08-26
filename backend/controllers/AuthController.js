@@ -1,9 +1,10 @@
 const User = require("../model/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { Controller } = require("./Controller");
 
-const AuthController = {
-  async logIn(req, res) {
+class AuthController extends Controller {
+  static async logIn(req, res) {
     try {
       const { email, password } = req.body;
 
@@ -17,9 +18,13 @@ const AuthController = {
         user.password &&
         (await bcrypt.compare(password, user.password))
       ) {
-        const token = jwt.sign({ user_id: user._id, email }, "secret", {
-          expiresIn: "2h",
-        });
+        const token = jwt.sign(
+          { user_id: user._id, email },
+          process.env.TOKEN_KEY,
+          {
+            expiresIn: "2h",
+          }
+        );
 
         user.token = token;
 
@@ -29,9 +34,9 @@ const AuthController = {
     } catch (err) {
       console.log(err);
     }
-  },
+  }
 
-  async register(req, res) {
+  static async register(req, res) {
     try {
       const { email, password, username } = req.body;
 
@@ -53,7 +58,7 @@ const AuthController = {
         password: encryptedPassword,
       });
 
-      const token = jwt.sign({ user: user.email }, "secret", {
+      const token = jwt.sign({ user: user.email }, process.env.TOKEN_KEY, {
         expiresIn: "2h",
       });
       user.token = token;
@@ -62,7 +67,7 @@ const AuthController = {
     } catch (err) {
       console.log(err);
     }
-  },
-};
+  }
+}
 
 module.exports = { AuthController };
