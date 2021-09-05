@@ -1,7 +1,21 @@
 <template>
   <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
     <div class="px-4 py-6 sm:px-0">
-      <div class="border-4 border-dashed border-gray-200 rounded-lg h-96">
+      <div class="flex flex-col">
+        <button
+          @click.prevent="addPost"
+          class="
+            ml-auto
+            bg-blue-500
+            hover:bg-blue-700
+            text-white
+            font-bold
+            p-3
+            rounded-full
+          "
+        >
+          Submit
+        </button>
         <input
           v-model="postContent"
           type="text"
@@ -9,14 +23,13 @@
             rounded
             border-2 border-gray-600
             w-3/4
-            mt-4
-            h-52
+            my-4
+            h-48
             m-auto
             max-w-7xl
             p-2
           "
         />
-        <button @click.prevent="addPost">submit</button>
       </div>
     </div>
   </div>

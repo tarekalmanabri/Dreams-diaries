@@ -12,7 +12,6 @@ export const auth = {
   },
   mutations: {
     SET_TOKEN(state, token) {
-      console.log(state, token);
       state.token = token;
     },
   },

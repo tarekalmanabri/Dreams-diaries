@@ -6,7 +6,6 @@
         <router-link
           to="/dreams/create"
           class="
-            flex
             ml-auto
             bg-blue-500
             hover:bg-blue-700
@@ -20,16 +19,12 @@
           + New Dream
         </router-link>
       </div>
-      <CreateDream />
     </header>
   </div>
 </template>
 
 <script>
-import CreateDream from "./Dreams/CreateDream.vue";
-
 export default {
-  components: { CreateDream },
   data() {
     return {
       posts: [],

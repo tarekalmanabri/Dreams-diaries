@@ -4,18 +4,9 @@
       <li
         v-for="(dream, index) in dreams"
         :key="dream + index"
-        class="
-          rounded
-          p-3
-          m-1
-          bg-gray-100
-          transition-colors
-          duration-700
-          dark:bg-gray-800
-          border-green-400
-        "
+        class="rounded p-3 m-1 bg-gray-100"
       >
-        {{ dream }}
+        {{ dream.content }}
       </li>
     </ul>
   </div>
