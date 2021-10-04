@@ -6,7 +6,9 @@ type btnProps = {
 
 const Button: FC<btnProps> = ({ title }) => {
   return (
-    <button className="text-white bg-blue-400 m-2 p-2 rounded">{title}</button>
+    <button className="text-gray-700 m-2 p-2 rounded hover:bg-red-400 hover:text-white">
+      {title}
+    </button>
   );
 };
 
