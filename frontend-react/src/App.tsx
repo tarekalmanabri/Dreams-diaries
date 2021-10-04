@@ -1,13 +1,25 @@
-import './styles.css';
-import { Card } from './Card';
+import "./assets/css/index.css";
+import { Header } from "./components/Header";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import About from "./components/About";
+import Home from "./components/Home";
 
 export default function App() {
   return (
     <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
+      <Router>
+        <Header />
 
-      <Card title="Hello" content="world" />
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+
+          <Route exact path="/about">
+            <About />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
