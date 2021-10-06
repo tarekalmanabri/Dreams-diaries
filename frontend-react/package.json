@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/index.tsx",
+  "proxy": "http://localhost:3080",
   "scripts": {
     "start": "craco start",
     "build": "craco build",
@@ -13,8 +14,10 @@
     "@craco/craco": "^6.2.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-redux": "^7.2.5",
     "react-router-dom": "^5.3.0",
-    "react-scripts": "4.0.3"
+    "react-scripts": "4.0.3",
+    "redux": "^4.1.1"
   },
   "devDependencies": {
     "@types/react": "17.0.20",

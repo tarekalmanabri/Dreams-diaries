@@ -3,20 +3,33 @@ import Button from "./Button";
 
 export const Header = () => {
   return (
-    <header className="flex bg-gray-100 p-5 border-rounded-xl">
-      <Link to="/">
-        <Button title="Home" />
-      </Link>
-      <Link to="about">
-        <Button title="About" />
-      </Link>
-      <Link to="connect">
-        <Button title="Connect" />
-      </Link>
-      <div className="ml-auto">
-        <Link to="signin">
-          <Button title="Sign In" />
+    <header className="border-b-2 p-6">
+      <div className="flex items-center">
+        <Link to="/">
+          <img
+            src="/img/backgrounds/logo_small.png"
+            alt="logo"
+            className="w-20 mr-2"
+          />
         </Link>
+        <div className="divide-x divide-gray-400">
+          <Link to="/">
+            <Button title="Home" />
+          </Link>
+          <Link to="about">
+            <Button title="About" />
+          </Link>
+          <Link to="connect">
+            <Button title="Connect" />
+          </Link>
+        </div>
+        <div className="ml-auto space-x-4">
+          <Link to="signin">
+            <Button title="Sign In" />
+          </Link>
+          <i className="fab fa-twitter text-red-400 hover:text-gray-700"></i>
+          <i className="fab fa-facebook-f text-red-400 hover:text-gray-700"></i>
+        </div>
       </div>
     </header>
   );

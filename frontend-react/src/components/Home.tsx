@@ -1,6 +1,11 @@
 const Home = () => {
   return (
     <div className="flex p-20 rounded m-auto mt-7 border border-gray-400 w-11/12">
+      <img
+        src="/img/backgrounds/logo_small.png"
+        alt="logo"
+        className="mr-auto w-64"
+      />
       <div className="ml-auto">
         <h2 className="text-2xl pb-5">Welcom to Dream Journal</h2>
         <p>
