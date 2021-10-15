@@ -8,7 +8,7 @@ const createRoutes = (app) => {
     res.send({ status: true });
   });
 
-  app.post("/login", AuthController.logIn);
+  app.post("/signin", AuthController.logIn);
   app.post("/register", AuthController.register);
 
   const dreamsRouter = express.Router();
