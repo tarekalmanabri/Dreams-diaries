@@ -1,6 +1,7 @@
+import { FC } from "react";
 import { Link } from "react-router-dom";
 
-const Dashbored = () => {
+const Dashbored: FC = () => {
   return (
     <div className="mt-4">
       <header className="bg-white shadow">

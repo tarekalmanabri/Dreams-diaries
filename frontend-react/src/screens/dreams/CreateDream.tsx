@@ -1,4 +1,6 @@
-const CreateDream = () => {
+import { FC } from "react";
+
+const CreateDream: FC = () => {
   return (
     <div className="max-w-7xl mx-auto">
       <div className="px-4 py-6">

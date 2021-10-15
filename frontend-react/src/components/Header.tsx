@@ -1,7 +1,8 @@
+import { FC } from "react";
 import { Link } from "react-router-dom";
 import Button from "./Button";
 
-export const Header = () => {
+export const Header: FC = () => {
   return (
     <header className="border-b-2 p-6">
       <div className="flex items-center">

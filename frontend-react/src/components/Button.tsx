@@ -1,8 +1,8 @@
 import { FC } from "react";
 
-type btnProps = {
+interface btnProps {
   title: string;
-};
+}
 
 const Button: FC<btnProps> = ({ title }) => {
   return (

@@ -1,4 +1,33 @@
-const Register = () => {
+import { FC, FormEvent, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router";
+import { register, setError, setLoading } from "../actions/userActions";
+import Message from "../components/Message";
+import { RootState } from "../store";
+
+const Register: FC = () => {
+  const [username, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const dispatch = useDispatch();
+  const { error, success } = useSelector((state: RootState) => state.auth);
+
+  useEffect(() => {
+    return () => {
+      if (error) {
+        dispatch(setError(""));
+      }
+    };
+  }, [error, dispatch]);
+
+  const submitHandler = (e: FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    dispatch(register({ email, username, password }, () => setLoading(false)));
+    <Redirect to="/" />;
+  };
+
   return (
     <div className="signup">
       <div className="flex min-h-screen bg-white">
@@ -11,12 +40,16 @@ const Register = () => {
               Free forever. No payment needed.
             </h3>
           </div>
-          <form className="p-0">
+          <form onSubmit={submitHandler} className="p-0">
+            {error && <Message type="danger" msg={error} />}
+            {success && <Message type="success" msg={success} />}
             <div className="mt-5">
               <input
                 type="text"
                 className="w-full p-2 border rounded border-gray-300 focus:ring-1"
                 placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="mt-5">
@@ -24,6 +57,8 @@ const Register = () => {
                 type="text"
                 className="w-full p-2 border rounded border-gray-300 focus:ring-1"
                 placeholder="User-name"
+                value={username}
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
             <div className="mt-5">
@@ -31,6 +66,8 @@ const Register = () => {
                 type="password"
                 className="w-full p-2 border rounded border-gray-300 focus:ring-1"
                 placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
 

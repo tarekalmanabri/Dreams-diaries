@@ -1,4 +1,6 @@
-const Home = () => {
+import { FC } from "react";
+
+const Home: FC = () => {
   return (
     <div className="flex p-20 rounded m-auto mt-7 border border-gray-400 w-11/12">
       <img

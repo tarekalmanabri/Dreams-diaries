@@ -1,4 +1,6 @@
-const Footer = () => {
+import { FC } from "react";
+
+const Footer: FC = () => {
   return (
     <div className="flex justify-evenly p-10">
       <a href="/">

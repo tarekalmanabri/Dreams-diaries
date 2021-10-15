@@ -9,23 +9,29 @@ import Register from "./screens/Register";
 import Footer from "./components/Footer";
 import Dashbored from "./screens/Dashbored";
 import CreateDream from "./screens/dreams/CreateDream";
+import { Provider } from "react-redux";
+import store from "./store";
+import { FC } from "react";
 
-export default function App() {
+const App: FC = () => {
   return (
-    <div className="App">
-      <Router>
-        <Header />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/about" component={About} />
-          <Route exact path="/connect" component={Connect} />
-          <Route exact path="/signin" component={Signin} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/dashbored" component={Dashbored} />
-          <Route exact path="/create" component={CreateDream} />
-        </Switch>
-      </Router>
-      <Footer />
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <Router>
+          <Header />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/connect" component={Connect} />
+            <Route exact path="/signin" component={Signin} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/dashbored" component={Dashbored} />
+            <Route exact path="/create" component={CreateDream} />
+          </Switch>
+        </Router>
+        <Footer />
+      </div>
+    </Provider>
   );
-}
+};
+export default App;
