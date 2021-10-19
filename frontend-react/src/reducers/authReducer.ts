@@ -1,30 +1,30 @@
+import { AuthState, AuthAction } from "../../types/types";
 import {
-  AuthAction,
-  AuthState,
-  SET_SUCCESS,
-  SET_ERROR,
-  SIGN_OUT,
+  SIGN_IN,
   SET_LOADING,
-  SET_USER,
+  SIGN_OUT,
+  SET_ERROR,
   NEED_VERIFICATION,
-} from "../types";
+  SET_SUCCESS,
+} from "../consts";
 
 const initialState: AuthState = {
-  user: null,
-  authenticated: false,
   loading: false,
   error: "",
   needVerification: false,
   success: "",
+  token: null,
 };
 
-export default (state = initialState, action: AuthAction) => {
+export const authReducer = (
+  state = initialState,
+  action: AuthAction
+): AuthState => {
   switch (action.type) {
-    case SET_USER:
+    case SIGN_IN:
       return {
         ...state,
-        user: action.payload,
-        authenticated: true,
+        token: action.payload,
       };
     case SET_LOADING:
       return {
@@ -34,8 +34,7 @@ export default (state = initialState, action: AuthAction) => {
     case SIGN_OUT:
       return {
         ...state,
-        user: null,
-        authenticated: false,
+        token: null,
         loading: false,
       };
     case SET_ERROR:

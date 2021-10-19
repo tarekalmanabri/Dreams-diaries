@@ -1,34 +1,26 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useState, FC, FormEvent, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useState, FC, FormEvent } from "react";
 import { Redirect } from "react-router-dom";
 import { RootState } from "../store";
-import { setError, setLoading, signin } from "../actions/userActions";
+import { setLoading, signIn } from "../actions/authActions";
 import Message from "../components/Message";
+import { getUser } from "../actions/userActions";
 
-const Signin: FC = () => {
+const SignIn: FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const dispatch = useDispatch();
-  const { error, success } = useSelector((state: RootState) => state.auth);
+  const { auth, user } = useSelector((state: RootState) => state);
 
-  useEffect(() => {
-    return () => {
-      if (error) {
-        dispatch(setError(""));
-      }
-    };
-  }, [error, dispatch]);
-
-  const submitHandler = (e: FormEvent) => {
+  const submitHandler = async (e: FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    dispatch(
-      signin({ email, password, authenticated: true }, () => setLoading(false))
-    );
-    <Redirect to="/" />;
+    await signIn({ email, password }, () => setLoading(false));
+    getUser();
   };
-  return (
+
+  return auth.token && user.user ? (
+    <Redirect to="/dashboard" />
+  ) : (
     <div className="login">
       <div className="flex min-h-screen bg-white">
         <div className="md:w-1/2 max-w-lg mx-auto my-24 px-4 py-5 shadow-none">
@@ -38,8 +30,6 @@ const Signin: FC = () => {
             </h1>
           </div>
           <form onSubmit={submitHandler} className="p-0">
-            {error && <Message type="danger" msg={error} />}
-            {success && <Message type="success" msg={success} />}
             <div className="mt-5">
               <input
                 type="text"
@@ -80,4 +70,4 @@ const Signin: FC = () => {
   );
 };
 
-export default Signin;
+export default SignIn;

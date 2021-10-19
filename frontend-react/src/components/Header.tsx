@@ -1,8 +1,18 @@
-import { FC } from "react";
+import { FC, FormEvent } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { signOut } from "../actions/authActions";
+import { RootState } from "../store";
 import Button from "./Button";
 
 export const Header: FC = () => {
+  const { token } = useSelector((state: RootState) => state.auth);
+
+  const submitHandler = (e: FormEvent) => {
+    e.preventDefault();
+    signOut();
+  };
+
   return (
     <header className="border-b-2 p-6">
       <div className="flex items-center">
@@ -25,9 +35,13 @@ export const Header: FC = () => {
           </Link>
         </div>
         <div className="ml-auto space-x-4">
-          <Link to="signin">
-            <Button title="Sign In" />
-          </Link>
+          {token ? (
+            <Button onClick={submitHandler} title="Sign Out" />
+          ) : (
+            <Link to="signin">
+              <Button title="Sign In" />
+            </Link>
+          )}
           <i className="fab fa-twitter text-red-400 hover:text-gray-700"></i>
           <i className="fab fa-facebook-f text-red-400 hover:text-gray-700"></i>
         </div>

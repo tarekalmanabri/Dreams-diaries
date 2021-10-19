@@ -1,8 +1,7 @@
-import { FC, FormEvent, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { FC, FormEvent, useState } from "react";
+import { useSelector } from "react-redux";
 import { Redirect } from "react-router";
-import { register, setError, setLoading } from "../actions/userActions";
-import Message from "../components/Message";
+import { register, setLoading } from "../actions/authActions";
 import { RootState } from "../store";
 
 const Register: FC = () => {
@@ -10,25 +9,17 @@ const Register: FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const dispatch = useDispatch();
-  const { error, success } = useSelector((state: RootState) => state.auth);
-
-  useEffect(() => {
-    return () => {
-      if (error) {
-        dispatch(setError(""));
-      }
-    };
-  }, [error, dispatch]);
+  const { token } = useSelector((state: RootState) => state.auth);
 
   const submitHandler = (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    dispatch(register({ email, username, password }, () => setLoading(false)));
-    <Redirect to="/" />;
+    register({ email, username, password }, () => setLoading(false));
   };
 
-  return (
+  return token ? (
+    <Redirect to="/" />
+  ) : (
     <div className="signup">
       <div className="flex min-h-screen bg-white">
         <div className="md:w-1/2 max-w-lg mx-auto my-24 px-4 py-5 shadow-none">
@@ -41,8 +32,6 @@ const Register: FC = () => {
             </h3>
           </div>
           <form onSubmit={submitHandler} className="p-0">
-            {error && <Message type="danger" msg={error} />}
-            {success && <Message type="success" msg={success} />}
             <div className="mt-5">
               <input
                 type="text"
