@@ -28,7 +28,7 @@ class AuthController extends Controller {
 
         user.token = token;
 
-        res.status(200).json(user);
+        return res.status(200).json(user);
       }
       res.status(400).send("Invalid credentials");
     } catch (err) {
@@ -41,7 +41,7 @@ class AuthController extends Controller {
       const { email, password, username } = req.body;
 
       if (!(email && password && username)) {
-        res.status(400).send("All input is required");
+        return res.status(400).send("All input is required");
       }
 
       const oldUser = await User.findOne({ email });
@@ -63,7 +63,7 @@ class AuthController extends Controller {
       });
       user.token = token;
 
-      res.status(201).json(user);
+      res.status(200).json(user);
     } catch (err) {
       console.log(err);
     }
