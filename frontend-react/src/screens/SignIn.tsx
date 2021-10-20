@@ -3,8 +3,8 @@ import { useState, FC, FormEvent } from "react";
 import { Redirect } from "react-router-dom";
 import { RootState } from "../store";
 import { setLoading, signIn } from "../actions/authActions";
-import Message from "../components/Message";
 import { getUser } from "../actions/userActions";
+import Input from "../components/Input";
 
 const SignIn: FC = () => {
   const [email, setEmail] = useState("");
@@ -30,24 +30,22 @@ const SignIn: FC = () => {
             </h1>
           </div>
           <form onSubmit={submitHandler} className="p-0">
-            <div className="mt-5">
-              <input
-                type="text"
-                className="w-full p-2 border rounded border-gray-300 focus:ring-1"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="mt-5">
-              <input
-                type="password"
-                className="w-full p-2 border rounded border-gray-300 focus:ring-1"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
+            <Input
+              type="text"
+              placeholder="Email"
+              value={email}
+              onChange={(e) =>
+                setEmail((e.target as HTMLTextAreaElement).value)
+              }
+            />
+            <Input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) =>
+                setPassword((e.target as HTMLTextAreaElement).value)
+              }
+            />
             <div className="mt-10">
               <button
                 type="submit"
@@ -57,7 +55,6 @@ const SignIn: FC = () => {
               </button>
             </div>
           </form>
-
           <span className="block p-5 text-center text-gray-800 text-xs">
             Don't have an account?
             <a href="/register">

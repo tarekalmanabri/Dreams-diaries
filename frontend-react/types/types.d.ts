@@ -1,10 +1,3 @@
-export interface AuthResposne {
-  username: string;
-  email: string;
-  password: string;
-  token: string;
-}
-
 export interface User {
   username: string;
   email: string;
@@ -22,20 +15,6 @@ export interface AuthState {
 
 export interface UserState {
   user?: User;
-}
-
-export interface SignUpData {
-  username: string;
-  email: string;
-  password: string;
-}
-
-/**
- * Sent to /auth/signin
- */
-export interface SignInData {
-  email: string;
-  password: string;
 }
 
 //Actions

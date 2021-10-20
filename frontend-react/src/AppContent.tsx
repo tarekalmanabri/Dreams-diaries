@@ -12,6 +12,10 @@ import { useSelector } from "react-redux";
 import store, { RootState } from "./store";
 import { FC, useEffect } from "react";
 import Cookies from "js-cookie";
+import EditProfile from "./screens/EditProfile";
+import Password from "./components/EditProfile/Password";
+import Email from "./components/EditProfile/Email";
+import Username from "./components/EditProfile/Username";
 
 const AppContent: FC = () => {
   const { auth } = useSelector((state: RootState) => state);
@@ -38,6 +42,10 @@ const AppContent: FC = () => {
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/edit" component={EditProfile} />
+          <Route exact path="/email" component={Email} />
+          <Route exact path="/username" component={Username} />
+          <Route exact path="/password" component={Password} />
           <Route exact path="/create" component={CreateDream} />
         </Switch>
       </Router>

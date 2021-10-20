@@ -33,6 +33,16 @@ export const Header: FC = () => {
           <Link to="connect">
             <Button title="Connect" />
           </Link>
+          {token ? (
+            <>
+              <Link to="dashboard">
+                <Button title="Dashboard" />
+              </Link>
+              <Link to="edit">
+                <Button title="Edit My Profile" />
+              </Link>
+            </>
+          ) : null}
         </div>
         <div className="ml-auto space-x-4">
           {token ? (

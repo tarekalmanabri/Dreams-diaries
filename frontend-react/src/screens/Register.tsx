@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Redirect } from "react-router";
 import { register, setLoading } from "../actions/authActions";
 import { RootState } from "../store";
+import Input from "../components/Input";
 
 const Register: FC = () => {
   const [username, setName] = useState("");
@@ -18,7 +19,7 @@ const Register: FC = () => {
   };
 
   return token ? (
-    <Redirect to="/" />
+    <Redirect to="/dashboard" />
   ) : (
     <div className="signup">
       <div className="flex min-h-screen bg-white">
@@ -32,34 +33,28 @@ const Register: FC = () => {
             </h3>
           </div>
           <form onSubmit={submitHandler} className="p-0">
-            <div className="mt-5">
-              <input
-                type="text"
-                className="w-full p-2 border rounded border-gray-300 focus:ring-1"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="mt-5">
-              <input
-                type="text"
-                className="w-full p-2 border rounded border-gray-300 focus:ring-1"
-                placeholder="User-name"
-                value={username}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-            <div className="mt-5">
-              <input
-                type="password"
-                className="w-full p-2 border rounded border-gray-300 focus:ring-1"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-
+            <Input
+              type="text"
+              placeholder="Email"
+              value={email}
+              onChange={(e) =>
+                setEmail((e.target as HTMLTextAreaElement).value)
+              }
+            />
+            <Input
+              type="text"
+              placeholder="User-name"
+              value={username}
+              onChange={(e) => setName((e.target as HTMLTextAreaElement).value)}
+            />
+            <Input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) =>
+                setPassword((e.target as HTMLTextAreaElement).value)
+              }
+            />
             <div className="mt-6 block p-5 text-sm md:font-sans text-xs text-gray-800">
               <input type="checkbox" className="mr-2 border-0" />
               <span>

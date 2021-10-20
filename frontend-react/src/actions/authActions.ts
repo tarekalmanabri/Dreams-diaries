@@ -1,9 +1,3 @@
-import axios from "axios";
-import {
-  SignUpData,
-  SignInData,
-  AuthResposne as AuthResponse,
-} from "../../types/types";
 import {
   SET_ERROR,
   SET_LOADING,
@@ -13,20 +7,22 @@ import {
 } from "../consts";
 import store from "../store";
 import Cookie from "js-cookie";
+import { authApi, SignInData, SignUpData } from "../services/api/authApi";
 
 export const register = async (
   data: SignUpData,
   onError: () => void
 ): Promise<void> => {
   try {
-    const res: { data: AuthResponse } = await axios.post("register", data);
-    if (res.data) {
+    const res = await authApi.signUp(data);
+
+    if (res) {
       store.dispatch({
         type: SIGN_IN,
-        payload: res.data.token,
+        payload: res.token,
       });
 
-      Cookie.set("token", res.data.token);
+      Cookie.set("token", res.token);
     }
   } catch (err) {
     onError();
@@ -49,13 +45,13 @@ export const signIn = async (
   onError: () => void
 ): Promise<void> => {
   try {
-    const user: { data: AuthResponse } = await axios.post("signin", data);
+    const res = await authApi.signIn(data);
     store.dispatch({
       type: SIGN_IN,
-      payload: user.data.token,
+      payload: res.token,
     });
 
-    Cookie.set("token", user.data.token);
+    Cookie.set("token", res.token);
   } catch (err) {
     console.log(err);
     onError();
@@ -68,6 +64,7 @@ export const signOut = (): void => {
   Cookie.set("token", "");
 };
 
+// Todo: move this to a separate store for notifications
 export const setError = (msg: string): void => {
   store.dispatch({ type: SET_ERROR, payload: msg });
 };
