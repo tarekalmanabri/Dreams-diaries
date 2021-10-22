@@ -38,8 +38,8 @@ export const Header: FC = () => {
               <Link to="dashboard">
                 <Button title="Dashboard" />
               </Link>
-              <Link to="edit">
-                <Button title="Edit My Profile" />
+              <Link to="update">
+                <Button title="Update My Profile" />
               </Link>
             </>
           ) : null}

@@ -12,10 +12,8 @@ import { useSelector } from "react-redux";
 import store, { RootState } from "./store";
 import { FC, useEffect } from "react";
 import Cookies from "js-cookie";
-import EditProfile from "./screens/EditProfile";
-import Password from "./components/EditProfile/Password";
-import Email from "./components/EditProfile/Email";
-import Username from "./components/EditProfile/Username";
+import UpdateProfile from "./screens/UpdateProfile";
+import { getUser } from "./actions/userActions";
 
 const AppContent: FC = () => {
   const { auth } = useSelector((state: RootState) => state);
@@ -23,33 +21,39 @@ const AppContent: FC = () => {
   useEffect(() => {
     const token = Cookies.get("token");
 
-    console.log(auth);
-    console.log(token);
-
     if (!auth.token && token) {
       store.dispatch({ type: "SIGN_IN", payload: token });
+      getUser();
+
+      const unsubscribe = store.subscribe(() => {
+        const state = store.getState();
+        if (state.user.user) {
+          unsubscribe();
+        }
+      });
+    } else {
     }
-  }, [auth]);
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <div className="App">
-      <Router>
-        <Header />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/about" component={About} />
-          <Route exact path="/connect" component={Connect} />
-          <Route exact path="/signin" component={SignIn} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/edit" component={EditProfile} />
-          <Route exact path="/email" component={Email} />
-          <Route exact path="/username" component={Username} />
-          <Route exact path="/password" component={Password} />
-          <Route exact path="/create" component={CreateDream} />
-        </Switch>
-      </Router>
-      <Footer />
+      <>
+        <Router>
+          <Header />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/connect" component={Connect} />
+            <Route exact path="/signin" component={SignIn} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/update" component={UpdateProfile} />
+            <Route exact path="/create" component={CreateDream} />
+          </Switch>
+        </Router>
+        <Footer />
+      </>
     </div>
   );
 };

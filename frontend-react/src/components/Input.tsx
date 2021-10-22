@@ -1,10 +1,10 @@
-import { ChangeEventHandler, FC } from "react";
+import { FC } from "react";
 
 interface inputProps {
   type: string;
   placeholder: string;
   value?: string;
-  onChange?: ChangeEventHandler;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
 const Button: FC<inputProps> = ({ placeholder, type, value, onChange }) => {

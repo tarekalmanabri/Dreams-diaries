@@ -9,7 +9,11 @@ export const userReducer = (state = initialState, action: UserAction) => {
         ...state,
         user: action.payload,
       };
-
+    case "UPDATE_USER":
+      return {
+        ...state,
+        user: action.payload,
+      };
     default:
       return state;
   }

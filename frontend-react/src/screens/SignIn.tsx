@@ -31,20 +31,16 @@ const SignIn: FC = () => {
           </div>
           <form onSubmit={submitHandler} className="p-0">
             <Input
-              type="text"
+              type="email"
               placeholder="Email"
               value={email}
-              onChange={(e) =>
-                setEmail((e.target as HTMLTextAreaElement).value)
-              }
+              onChange={(e) => setEmail(e.currentTarget.value)}
             />
             <Input
               type="password"
               placeholder="Password"
               value={password}
-              onChange={(e) =>
-                setPassword((e.target as HTMLTextAreaElement).value)
-              }
+              onChange={(e) => setPassword(e.currentTarget.value)}
             />
             <div className="mt-10">
               <button

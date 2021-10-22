@@ -59,4 +59,8 @@ interface SaveUserAction {
   payload: User;
 }
 
-export type UserAction = SaveUserAction;
+interface UpdateUserAction {
+  type: "UPDATE_USER";
+  payload: User;
+}
+export type UserAction = SaveUserAction | UpdateUserAction;
