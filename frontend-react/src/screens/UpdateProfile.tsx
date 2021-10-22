@@ -1,33 +1,34 @@
 import { FC, FormEvent, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 import { getUser, updateUserProfile } from "../actions/userActions";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import { RootState } from "../store";
 
 const UpdateProfile: FC = () => {
-  const { user } = useSelector((state: RootState) => state);
+  const { auth, user } = useSelector((state: RootState) => state);
 
-  const [email, setEmail] = useState(user.user?.email ?? "");
-  const [username, setUsername] = useState(user.user?.username ?? "");
+  const [email, setEmail] = useState(user?.email ?? "");
+  const [username, setUsername] = useState(user?.username ?? "");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   useEffect(() => {
     getUser();
+    // eslint-disable-next-line
   }, []);
 
-  function submitHandler(event: FormEvent) {
+  const submitHandler = async (event: FormEvent) => {
     event.preventDefault();
-
     if (password !== confirmPassword) {
       alert("Passwords do not match");
     } else {
-      return updateUserProfile({ email, password, username });
+      await updateUserProfile({ email, password, username });
     }
-  }
+  };
 
-  return (
+  return auth.token && user ? (
     <div className="flex min-h-screen bg-white">
       <div className="md:w-1/2 max-w-lg mx-auto my-24 px-4 py-5 shadow-none">
         <div className="text-left p-0 font-sans"></div>
@@ -67,6 +68,8 @@ const UpdateProfile: FC = () => {
         </div>
       </div>
     </div>
+  ) : (
+    <Redirect to="/signin" />
   );
 };
 export default UpdateProfile;

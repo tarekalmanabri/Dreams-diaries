@@ -2,6 +2,7 @@ const User = require("../model/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { Controller } = require("./Controller");
+const uuid = require("uuid");
 
 class AuthController extends Controller {
   static async logIn(req, res) {
@@ -18,13 +19,9 @@ class AuthController extends Controller {
         user.password &&
         (await bcrypt.compare(password, user.password))
       ) {
-        const token = jwt.sign(
-          { user_id: user._id, email },
-          process.env.TOKEN_KEY,
-          {
-            expiresIn: "2h",
-          }
-        );
+        const token = jwt.sign({ uuid: user.uuid }, process.env.TOKEN_KEY, {
+          expiresIn: "24h",
+        });
 
         user.token = token;
 
@@ -53,13 +50,14 @@ class AuthController extends Controller {
       const encryptedPassword = await bcrypt.hash(password, 10);
 
       const user = await User.create({
+        uuid: uuid.v4(),
         username,
         email: email.toLowerCase(),
         password: encryptedPassword,
       });
 
-      const token = jwt.sign({ user: user.email }, process.env.TOKEN_KEY, {
-        expiresIn: "2h",
+      const token = jwt.sign({ uuid: user.uuid }, process.env.TOKEN_KEY, {
+        expiresIn: "24h",
       });
       user.token = token;
 

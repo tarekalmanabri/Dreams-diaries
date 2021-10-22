@@ -10,33 +10,42 @@ import Dashboard from "./screens/Dashboard";
 import CreateDream from "./screens/dreams/CreateDream";
 import { useSelector } from "react-redux";
 import store, { RootState } from "./store";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import UpdateProfile from "./screens/UpdateProfile";
 import { getUser } from "./actions/userActions";
 
 const AppContent: FC = () => {
   const { auth } = useSelector((state: RootState) => state);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     const token = Cookies.get("token");
 
     if (!auth.token && token) {
       store.dispatch({ type: "SIGN_IN", payload: token });
-      getUser();
 
       const unsubscribe = store.subscribe(() => {
         const state = store.getState();
-        if (state.user.user) {
+        if (state.user) {
           unsubscribe();
+          setReady(true);
         }
       });
+
+      getUser().catch(() => {
+        Cookies.set("token", "");
+        store.dispatch({ type: "SIGN_OUT" });
+        setReady(true);
+        return;
+      });
     } else {
+      setReady(true);
     }
     // eslint-disable-next-line
   }, []);
 
-  return (
+  return ready ? (
     <div className="App">
       <>
         <Router>
@@ -55,6 +64,8 @@ const AppContent: FC = () => {
         <Footer />
       </>
     </div>
+  ) : (
+    <p>Loading...</p>
   );
 };
 

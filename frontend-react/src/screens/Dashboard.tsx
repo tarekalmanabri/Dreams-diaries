@@ -6,11 +6,11 @@ import { RootState } from "../store";
 const Dashboard: FC = () => {
   const { auth, user } = useSelector((state: RootState) => state);
 
-  return auth.token && user.user ? (
+  return auth.token && user ? (
     <div className="mt-4">
       <header className="bg-white shadow">
         <p className="text-xl ml-7">
-          Welcome, <span className="text-red-400">{user.user.username}</span>
+          Welcome, <span className="text-red-400">{user.username}</span>
         </p>
         <div className="flex max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>

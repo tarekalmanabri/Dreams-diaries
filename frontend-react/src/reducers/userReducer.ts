@@ -1,18 +1,18 @@
-import { UserAction, UserState } from "../../types/types";
+import { User, UserAction } from "../../types/types";
 
-const initialState: UserState = {};
+const initialState: User = {};
 
 export const userReducer = (state = initialState, action: UserAction) => {
   switch (action.type) {
     case "SAVE_USER":
       return {
         ...state,
-        user: action.payload,
+        ...action.payload,
       };
     case "UPDATE_USER":
       return {
         ...state,
-        user: action.payload,
+        ...action.payload,
       };
     default:
       return state;

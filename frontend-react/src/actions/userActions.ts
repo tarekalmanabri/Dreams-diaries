@@ -1,5 +1,3 @@
-import axios from "axios";
-import { User } from "../../types/types";
 import { UserData, usersApi } from "../services/api/usersApi";
 import store from "../store";
 
@@ -11,19 +9,17 @@ export const getUser = async () => {
     return;
   }
 
-  const data: { data: User } = await axios.get("/users", {
-    headers: {
-      authorization: token,
-    },
-  });
+  const data = await usersApi.getUser();
 
-  store.dispatch({ type: "SAVE_USER", payload: data.data });
+  if (data) {
+    store.dispatch({ type: "SAVE_USER", payload: data });
+  }
 };
 
 export const updateUserProfile = async (data: UserData) => {
   const response = await usersApi.updateUser(data);
   store.dispatch({
     type: "UPDATE_USER",
-    payload: response.user,
+    payload: response,
   });
 };

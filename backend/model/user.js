@@ -6,6 +6,7 @@ const reqString = {
 };
 
 const UserSchema = new mongoose.Schema({
+  uuid: { type: String },
   email: {
     type: String,
     required: true,

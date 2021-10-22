@@ -12,9 +12,10 @@ class DreamsController extends Controller {
         res.status(400).send("All input is required");
       }
 
+      const user = await User.findOne({ email: res.locals.user_id });
       const dream = await Post.create({
         content,
-        user_id: res.locals.user.user_id,
+        user_id: user._id,
       });
 
       res.status(201).json(this.response([dream]));

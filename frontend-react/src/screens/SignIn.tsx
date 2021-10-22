@@ -18,7 +18,7 @@ const SignIn: FC = () => {
     getUser();
   };
 
-  return auth.token && user.user ? (
+  return auth.token && user ? (
     <Redirect to="/dashboard" />
   ) : (
     <div className="login">

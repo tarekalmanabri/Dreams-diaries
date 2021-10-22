@@ -1,9 +1,6 @@
 import { User } from "../../../types/types";
-import { axios } from "../axios";
-
-export interface UserResponse {
-  user: User;
-}
+import store from "../../store";
+import { getAxios } from "../axios";
 
 export interface UserData {
   username: string;
@@ -12,15 +9,18 @@ export interface UserData {
 }
 
 export const usersApi = {
-  async getUser(): Promise<UserResponse> {
-    const res = await axios.get("users");
+  async getUser(): Promise<User | null> {
+    let res = await getAxios().get("users");
 
-    return res.data as UserResponse;
+    return res.data;
   },
 
-  async updateUser(data: UserData): Promise<UserResponse> {
-    const res = await axios.put("users", data);
+  async updateUser(data: UserData): Promise<User> {
+    const res = await getAxios().put("users/update", {
+      ...data,
+      uuid: store.getState().user.uuid,
+    });
 
-    return res.data as unknown as UserResponse;
+    return res.data as User;
   },
 };

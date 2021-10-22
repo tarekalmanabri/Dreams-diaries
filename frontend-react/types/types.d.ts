@@ -1,8 +1,9 @@
 export interface User {
-  username: string;
-  email: string;
-  password: string;
-  token: string;
+  uuid?: string;
+  username?: string;
+  email?: string;
+  password?: string;
+  token?: string;
 }
 
 export interface AuthState {
@@ -11,10 +12,6 @@ export interface AuthState {
   needVerification: boolean;
   success: string;
   token: string | null;
-}
-
-export interface UserState {
-  user?: User;
 }
 
 //Actions

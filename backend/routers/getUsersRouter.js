@@ -7,6 +7,7 @@ const getUsersRouter = () => {
   const userController = new UserController();
   usersRouter.use(AuthMiddleware);
   usersRouter.get("/", (req, res) => userController.getUser(req, res));
+  usersRouter.put("/update", (req, res) => userController.updateUser(req, res));
 
   return usersRouter;
 };
