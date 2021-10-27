@@ -10,13 +10,13 @@ export interface UserData {
 
 export const usersApi = {
   async getUser(): Promise<User | null> {
-    let res = await getAxios().get("users");
+    let res = await getAxios().get("/users");
 
     return res.data;
   },
 
   async updateUser(data: UserData): Promise<User> {
-    const res = await getAxios().put("users/update", {
+    const res = await getAxios().put("/users/update", {
       ...data,
       uuid: store.getState().user.uuid,
     });

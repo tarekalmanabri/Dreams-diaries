@@ -1,7 +1,7 @@
 import { Header } from "./components/Header";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import About from "./screens/About";
-import Home from "./components/Home";
+import Home from "./screens/Home";
 import SignIn from "./screens/SignIn";
 import Connect from "./screens/Connect";
 import Register from "./screens/Register";
@@ -56,9 +56,9 @@ const AppContent: FC = () => {
             <Route exact path="/connect" component={Connect} />
             <Route exact path="/signin" component={SignIn} />
             <Route exact path="/register" component={Register} />
-            <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/dreams" component={Dashboard} />
             <Route exact path="/update" component={UpdateProfile} />
-            <Route exact path="/create" component={CreateDream} />
+            <Route exact path="/dreams/create" component={CreateDream} />
           </Switch>
         </Router>
         <Footer />

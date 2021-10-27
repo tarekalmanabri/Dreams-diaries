@@ -14,6 +14,10 @@ export interface AuthState {
   token: string | null;
 }
 
+export interface Dream {
+  content?: string;
+}
+
 //Actions
 interface SignInAction {
   type: "SIGN_IN";
@@ -60,4 +64,5 @@ interface UpdateUserAction {
   type: "UPDATE_USER";
   payload: User;
 }
+
 export type UserAction = SaveUserAction | UpdateUserAction;

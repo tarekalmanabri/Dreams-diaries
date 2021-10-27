@@ -1,7 +1,20 @@
-import { FC } from "react";
+import { FC, FormEvent, useState } from "react";
+import { Redirect } from "react-router";
+import { createDream } from "../../actions/dreamActions";
 
 const CreateDream: FC = () => {
-  return (
+  const [created, setCreated] = useState(false);
+  const [content, setContent] = useState("");
+
+  const submitHandler = async (e: FormEvent) => {
+    e.preventDefault();
+    await createDream({ content });
+    setCreated(true);
+  };
+
+  return created ? (
+    <Redirect to="/dreams"></Redirect>
+  ) : (
     <div className="max-w-7xl mx-auto">
       <div className="px-4 py-6">
         <div className="flex flex-col justify-center">
@@ -18,6 +31,8 @@ const CreateDream: FC = () => {
             max-w-7xl
             p-2
           "
+            value={content}
+            onChange={(e) => setContent(e.currentTarget.value)}
           />
           <button
             className="
@@ -30,6 +45,7 @@ const CreateDream: FC = () => {
             p-2
             rounded
           "
+            onClick={submitHandler}
           >
             Submit
           </button>

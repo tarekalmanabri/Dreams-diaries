@@ -1,4 +1,4 @@
-const Post = require("../model/post");
+const Dream = require("../model/Dream");
 const { Controller } = require("./Controller");
 
 class DreamsController extends Controller {
@@ -6,19 +6,21 @@ class DreamsController extends Controller {
 
   async createDream(req, res) {
     try {
-      const { content } = req.body.data.dreams[0];
+      const { dreams } = req.body.data;
 
-      if (!content) {
+      if (!dreams) {
+        console.log(req.body);
         res.status(400).send("All input is required");
+        return;
       }
 
-      const user = await User.findOne({ email: res.locals.user_id });
-      const dream = await Post.create({
-        content,
-        user_id: user._id,
+      const newDream = dreams[0];
+      const dream = await Dream.create({
+        ...newDream,
+        user_uuid: res.locals.jwt.uuid,
       });
 
-      res.status(201).json(this.response([dream]));
+      return res.status(200).json(this.response([dream]));
     } catch (err) {
       res.status(400).json(this.error(err));
     }
@@ -26,7 +28,7 @@ class DreamsController extends Controller {
 
   async getDreams(req, res) {
     try {
-      const dreams = await Post.find();
+      const dreams = await Dream.find({ user_uuid: res.locals.jwt.uuid });
       res.status(200).json(this.response(dreams));
     } catch (err) {
       res.status(400).json(this.error(err));

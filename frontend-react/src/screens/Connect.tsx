@@ -1,7 +1,8 @@
 import { FC } from "react";
+import { Layout } from "../components/Layout";
 
 const Connect: FC = () => {
-  return <div className="p-5 border-rounded-xl">This is connect</div>;
+  return <Layout>This is connect</Layout>;
 };
 
 export default Connect;

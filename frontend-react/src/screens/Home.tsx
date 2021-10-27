@@ -1,26 +1,25 @@
 import { FC } from "react";
 import { useSelector } from "react-redux";
+import { Layout } from "../components/Layout";
 import { RootState } from "../store";
 
 const Home: FC = () => {
   const { token } = useSelector((state: RootState) => state.auth);
 
   return (
-    <>
+    <Layout>
       {token ? (
-        <>
-          <div>signed in home</div>
-        </>
+        <>Signed in home</>
       ) : (
-        <div className="flex p-20 rounded m-auto mt-7 border border-gray-400 w-11/12">
+        <div className="flex flex-col lg:flex-row md:p-20 p-4 rounded m-auto mt-7 border border-gray-400 w-11/12">
           <img
             src="/img/backgrounds/logo_small.png"
             alt="logo"
-            className="mr-auto w-64"
+            className="w-44 h-28 mb-5 lg:ml-auto md:w-48 lg:mb-0"
           />
           <div className="ml-auto">
             <h2 className="text-2xl pb-5">Welcom to Dream Journal</h2>
-            <p>
+            <p className="text-left">
               Do you want to live in your own dream?
               <br />
               Lucid dreaming is one of the most intersting thing about dreaming,
@@ -35,7 +34,7 @@ const Home: FC = () => {
           </div>
         </div>
       )}
-    </>
+    </Layout>
   );
 };
 export default Home;

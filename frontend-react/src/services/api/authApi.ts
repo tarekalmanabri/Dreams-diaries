@@ -20,13 +20,13 @@ export interface SignInData {
 
 export const authApi = {
   async signUp(data: SignUpData): Promise<AuthResponse> {
-    const res = await realAxios.post("register", data);
+    const res = await realAxios.post("/register", data);
 
     return res.data as AuthResponse;
   },
 
   async signIn(data: SignInData): Promise<AuthResponse> {
-    const res = await realAxios.post("signin", data);
+    const res = await realAxios.post("/signin", data);
 
     return res.data as AuthResponse;
   },

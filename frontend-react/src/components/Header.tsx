@@ -4,9 +4,12 @@ import { signOut } from "../actions/authActions";
 import { RootState } from "../store";
 import { useSelector } from "react-redux";
 import Button from "./Button";
+import Avatar from "react-avatar";
 
 export const Header: FC = () => {
   const { token } = useSelector((state: RootState) => state.auth);
+  const { username } = useSelector((state: RootState) => state.user);
+
   const [navbarOpen, setNavbarOpen] = useState(false);
 
   const submitHandler = (e: FormEvent) => {
@@ -16,8 +19,8 @@ export const Header: FC = () => {
 
   return (
     <header className="border-b-2 p-6 mb-3">
-      <div className="flex flex-wrap mx-auto items-center">
-        <div className="w-full flex justify-between lg:w-auto lg:block lg:justify-start">
+      <div className="flex flex-wrap items-center lg:justify-center">
+        <div className="w-full flex justify-between lg:w-auto">
           <Link to="/">
             <img
               src="/img/backgrounds/logo_small.png"
@@ -43,18 +46,18 @@ export const Header: FC = () => {
             <Link to="/">
               <Button title="Home" />
             </Link>
-            <Link to="about">
+            <Link to="/about">
               <Button title="About" />
             </Link>
-            <Link to="connect">
+            <Link to="/connect">
               <Button title="Connect" />
             </Link>
             {token ? (
               <>
-                <Link to="dashboard">
+                <Link to="/dreams">
                   <Button title="Dashboard" />
                 </Link>
-                <Link to="update">
+                <Link to="/update">
                   <Button title="Update My Profile" />
                 </Link>
               </>
@@ -63,9 +66,12 @@ export const Header: FC = () => {
           <div className="ml-auto flex items-center ">
             <div>
               {token ? (
-                <Button onClick={submitHandler} title="Sign Out" />
+                <>
+                  <Avatar name={username} size="40" round={true} />
+                  <Button onClick={submitHandler} title="Sign Out" />
+                </>
               ) : (
-                <Link to="signin">
+                <Link to="/signin">
                   <Button title="Sign In" />
                 </Link>
               )}

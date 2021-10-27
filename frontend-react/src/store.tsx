@@ -3,10 +3,12 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { authReducer } from "./reducers/authReducer";
 import { userReducer } from "./reducers/userReducer";
+import { dreamReducer } from "./reducers/dreamReducer";
 
 const reducer = combineReducers({
   auth: authReducer,
   user: userReducer,
+  dream: dreamReducer,
 });
 
 const middleware = [thunk];
