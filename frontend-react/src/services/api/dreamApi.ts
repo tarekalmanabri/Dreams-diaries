@@ -2,6 +2,7 @@ import { getAxios } from "../axios";
 
 export interface DreamData {
   content: string;
+  uuid?: string;
 }
 
 interface DreamsResponse {

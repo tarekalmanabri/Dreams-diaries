@@ -30,8 +30,8 @@ const Dashboard: FC = () => {
         </div>
       </header>
       <div className="mt-5">
-        {dreams.map((dream, i) => (
-          <Dream dream={dream.content} key={i} />
+        {dreams.map((item) => (
+          <Dream content={item.content} key={item.uuid} />
         ))}
       </div>
     </Layout>

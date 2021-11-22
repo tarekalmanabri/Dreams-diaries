@@ -1,4 +1,5 @@
 const Dream = require("../model/Dream");
+const uuid = require("uuid");
 const { Controller } = require("./Controller");
 
 class DreamsController extends Controller {
@@ -17,6 +18,7 @@ class DreamsController extends Controller {
       const newDream = dreams[0];
       const dream = await Dream.create({
         ...newDream,
+        uuid: uuid.v4(),
         user_uuid: res.locals.jwt.uuid,
       });
 

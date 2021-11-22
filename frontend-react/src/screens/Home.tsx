@@ -7,9 +7,11 @@ const Home: FC = () => {
   const { token } = useSelector((state: RootState) => state.auth);
 
   return (
-    <Layout>
+    <>
       {token ? (
-        <>Signed in home</>
+        <Layout>
+          <>Signed in home</>
+        </Layout>
       ) : (
         <div className="flex flex-col lg:flex-row md:p-20 p-4 rounded m-auto mt-7 border border-gray-400 w-11/12">
           <img
@@ -34,7 +36,7 @@ const Home: FC = () => {
           </div>
         </div>
       )}
-    </Layout>
+    </>
   );
 };
 export default Home;
