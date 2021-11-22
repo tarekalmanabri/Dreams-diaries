@@ -1,0 +1,31 @@
+version: "3.0"
+
+services:
+  vue:
+    build:
+      context: .
+      dockerfile: ./frontend-vue/Dockerfile
+    volumes:
+      - ./frontend-vue:/app
+    ports:
+      - "9901:8080"
+
+  react:
+    build:
+      context: .
+      dockerfile: ./frontend-react/Dockerfile
+    volumes:
+      - ./frontend-react:/app
+    ports:
+      - "9902:3000"
+
+  backend:
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile
+    volumes:
+      - ./backend:/app
+    ports:
+      - "9903:3080"
+    env_file:
+      - ./.env
